@@ -54,7 +54,8 @@ This is a very rough and ready project at the moment.
 It uses some dependencies that are in projects not deployed to Maven Central - so you will need to import these into
 your own workspace, at least for now:
 
- [vlcj-5.0.0-SNAPSHOT](https://github.com/caprica/vlcj)
- [brue-1.0.0-SNAPSHOT](https://github.com/caprica/brue)
- [brue-bridge-1.0.0-SNAPSHOT](https://github.com/caprica/brue-bridge)
- [brue-okhttp-1.0.0-SNAPSHOT](https://github.com/caprica/brue-okhttp)
+ * [vlcj-5.0.0-SNAPSHOT](https://github.com/caprica/vlcj)
+ * [brue-1.0.0-SNAPSHOT](https://github.com/caprica/brue)
+ * [brue-bridge-1.0.0-SNAPSHOT](https://github.com/caprica/brue-bridge)
+ * [brue-okhttp-1.0.0-SNAPSHOT](https://github.com/caprica/brue-okhttp)
+
