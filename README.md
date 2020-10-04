@@ -59,3 +59,9 @@ your own workspace, at least for now:
  * [brue-bridge-1.0.0-SNAPSHOT](https://github.com/caprica/brue-bridge)
  * [brue-okhttp-1.0.0-SNAPSHOT](https://github.com/caprica/brue-okhttp)
 
+## Demo
+
+Some YouTube videos showing the proof of concept:
+
+ * https://www.youtube.com/watch?v=SNLN9uvkpwc
+ * https://www.youtube.com/watch?v=FwEeiP8P0XM
