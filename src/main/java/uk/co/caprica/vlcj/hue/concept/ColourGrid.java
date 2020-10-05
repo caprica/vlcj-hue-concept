@@ -19,7 +19,9 @@ public class ColourGrid extends JPanel {
         }
     }
 
-    public void set(int i, Color colour) {
-        panels[i].setBackground(colour);
+    public void set(int[] rgbs) {
+        for (int i = 0; i < rgbs.length; i++) {
+            panels[i].setBackground(new Color(rgbs[i]));
+        }
     }
 }

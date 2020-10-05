@@ -16,12 +16,15 @@ public class VlcjHueConcept {
     public VlcjHueConcept() {
         final JFrame frame = new JFrame("vlcj Hue Concept Demo");
 
+        int rows = 3;
+        int cols = 3;
+
         mediaPlayerComponent = new CallbackMediaPlayerComponent(
             null,
             null,
             null,
             true,
-            hardware ? new HueSamplingCallbackImagePainter() : new SamplingCallbackImagePainter(),
+            hardware ? new HueSamplingCallbackImagePainter(rows, cols) : new SamplingCallbackImagePainter(rows, cols),
             null,
             null,
             null);
@@ -31,7 +34,7 @@ public class VlcjHueConcept {
         frame.setBackground(Color.black);
         frame.setContentPane(mediaPlayerComponent);
 
-        frame.setLocation(100, 100);
+        frame.setLocation(200, 200);
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
@@ -45,7 +48,7 @@ public class VlcjHueConcept {
     }
 
     public static void main(String[] args) {
-        args = new String[] {"https://www.youtube.com/watch?v=CHF0N-zbTdQ"};
+        args = new String[] {"https://www.youtube.com/watch?v=7rCzIwlX8Dg"};
 
         VlcjHueConcept app = new VlcjHueConcept();
         app.mediaPlayerComponent.mediaPlayer().media().play(args[0]);

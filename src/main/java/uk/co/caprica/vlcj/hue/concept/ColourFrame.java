@@ -12,12 +12,12 @@ public class ColourFrame extends JFrame {
 
         setBackground(Color.black);
         setContentPane(this.colourGrid);
-        setLocation(1000, 100);
+        setLocation(1002, 200);
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
-    public void set(int index, Color colour) {
-        colourGrid.set(index, colour);
+    public void set(int[] rgbs) {
+        colourGrid.set(rgbs);
     }
 }

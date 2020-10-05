@@ -16,36 +16,30 @@ public class HueSamplingCallbackImagePainter extends SamplingCallbackImagePainte
 
     private final BridgeService bridgeService = new BridgeServiceImpl(new TestBridgeSettings());
 
-    private int rgb1;
-    private int rgb2;
-    private int rgb3;
-    private int rgb4;
+    private int[] samples;
 
     // Update the lights every 100ms, you should experiment with how often you want to (or can) update the lights
-    private final Timer timer = new Timer(500, new ActionListener() {
+    private final Timer timer = new Timer(100, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             // FIXME adjust these to your own lights - discover them rather than hard-coding them etc
             // FIXME maybe optimise to set all lights in one go if the API supports it
-//            setColour(7, rgb1);
-//            setColour(8, rgb2);
-//            setColour(9, rgb3);
-//            setColour(10, rgb4);
+//            setColour(7, samples[0]);
+//            setColour(8, samples[1]);
+//            setColour(9, samples[2]);
+//            setColour(10, samples[3]);
         }
     });
 
-    public HueSamplingCallbackImagePainter() {
+    public HueSamplingCallbackImagePainter(int rows, int cols) {
+        super(rows, cols);
         timer.start();
     }
 
     @Override
-    protected void sample(int rgb1, int rgb2, int rgb3, int rgb4) {
-        super.sample(rgb1, rgb2, rgb3, rgb4);
-
-        this.rgb1 = rgb1;
-        this.rgb2 = rgb2;
-        this.rgb3 = rgb3;
-        this.rgb4 = rgb4;
+    protected void sample(int[] samples) {
+        super.sample(samples);
+        this.samples = samples;
     }
 
     private void setColour(int light, int rgb) {

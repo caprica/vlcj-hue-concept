@@ -28,40 +28,51 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
 
     // This example uses 4 light regions - the 4 rectangular quadrants, TL, TR, BL, BR - the idea with this arrangement
     // is two lights in front and two lights behind (or to the sides)
-    private final int rows = 2;
-    private final int cols = 2;
+    private final int rows;
+    private final int cols;
 
-    private final ColourFrame colourFrame = new ColourFrame(rows, cols);
+    private final ColourFrame colourFrame;
 
-    private final Rectangle[] rectangles = new Rectangle[rows * cols];
+    private final Rectangle[] rectangles;
 
-    public SamplingCallbackImagePainter() {
+    public int segmentWidth;
+    public int segmentHeight;
+
+    private int[] samples;
+
+    public SamplingCallbackImagePainter(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+        this.colourFrame = new ColourFrame(rows, cols);
+        this.rectangles = new Rectangle[rows * cols];
+
         for (int i = 0; i < rows * cols; i++) {
             rectangles[i] = new Rectangle();
         }
+        samples = new int[rows * cols];
         colourFrame.setVisible(true);
+    }
+
+    @Override
+    public void newVideoBuffer(int width, int height) {
+        segmentWidth = width / cols;
+        segmentHeight = height / cols;
+        for (int i = 0, r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                rectangles[i++] = new Rectangle(c * segmentWidth, r * segmentHeight, segmentWidth, segmentHeight);
+            }
+        }
     }
 
     @Override
     public void paint(Graphics2D g2, JComponent component, BufferedImage image) {
         if (image != null) {
-            sample(image);
+            for (int i = 0; i < rectangles.length; i++) {
+                samples[i] = sample(image, rectangles[i]);
+            }
+            sample(samples);
         }
         super.paint(g2, component, image);
-    }
-
-    private void sample(BufferedImage image) {
-        int width = image.getWidth() / 2;
-        int height = image.getHeight() / 2;
-        rectangles[0].setBounds(0, 0, width, height);
-        rectangles[1].setBounds( width, 0, width, height);
-        rectangles[2].setBounds( 0, height, width, height);
-        rectangles[3].setBounds( width, height, width, height);
-        int rgb1 = sample(image, rectangles[0]);
-        int rgb2 = sample(image, rectangles[1]);
-        int rgb3 = sample(image, rectangles[2]);
-        int rgb4 = sample(image, rectangles[3]);
-        sample(rgb1, rgb2, rgb3, rgb4);
     }
 
     // FIXME using difference of squares is likely overkill here
@@ -94,10 +105,7 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
         }
     }
 
-    protected void sample(int rgb1, int rgb2, int rgb3, int rgb4) {
-        colourFrame.set(0, new Color(rgb1));
-        colourFrame.set(1, new Color(rgb2));
-        colourFrame.set(2, new Color(rgb3));
-        colourFrame.set(3, new Color(rgb4));
+    protected void sample(int[] samples) {
+        colourFrame.set(samples);
     }
 }
