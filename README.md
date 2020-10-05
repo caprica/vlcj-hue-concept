@@ -27,6 +27,11 @@ There may be faster, smarter, nicer algorithms.
 
 The implementation is naive and not necessarily efficient, there is plenty of room for optimising things.
 
+### Painter vs Callback
+
+This implementation hooks into vlcj's `CallbackImagePainter`, it will probably be more efficient to hook into the render
+callback mechnaism earlier by using a custom 'RenderCallback' instead.
+
 ### Philips Hue
 
 This example includes an interface to a Philips Hue bridge - if you want to try that you need to do some developer
