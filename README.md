@@ -60,6 +60,7 @@ It uses some dependencies that are in projects not deployed to Maven Central - s
 your own workspace, at least for now:
 
  * [vlcj-5.0.0-SNAPSHOT](https://github.com/caprica/vlcj)
+ * [vlcj-natives-5.0.0-SNAPSHOT](https://github.com/caprica/vlcj-natives)
  * [brue-1.0.0-SNAPSHOT](https://github.com/caprica/brue)
  * [brue-bridge-1.0.0-SNAPSHOT](https://github.com/caprica/brue-bridge)
  * [brue-okhttp-1.0.0-SNAPSHOT](https://github.com/caprica/brue-okhttp)
