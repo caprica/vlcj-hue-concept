@@ -101,10 +101,14 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
         }
         float sz = rc.width * rc.height;
         if (useSquares) {
-            return new Color((int) floor(sqrt(r / sz)), (int) floor(sqrt(g / sz)), (int) floor(sqrt(b / sz))).getRGB();
+            return rgb((int) floor(sqrt(r / sz)), (int) floor(sqrt(g / sz)), (int) floor(sqrt(b / sz)));
         } else {
-            return new Color((int) floor(r / sz), (int) floor(g / sz), (int) floor(b / sz)).getRGB();
+            return rgb((int) floor(r / sz), (int) floor(g / sz), (int) floor(b / sz));
         }
+    }
+
+    private static int rgb(int r, int g, int b) {
+        return ((r & 0xFF) << 16) | ((g & 0xFF) << 8)  | ((b & 0xFF));
     }
 
     protected void sample(int[] samples) {
