@@ -38,6 +38,8 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
     public int segmentWidth;
     public int segmentHeight;
 
+    private int[] buffer;
+
     private int[] samples;
 
     public SamplingCallbackImagePainter(int rows, int cols) {
@@ -62,6 +64,7 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
                 rectangles[i++] = new Rectangle(c * segmentWidth, r * segmentHeight, segmentWidth, segmentHeight);
             }
         }
+        buffer = new int[segmentWidth * segmentHeight];
     }
 
     @Override
@@ -79,8 +82,7 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
     private static final boolean useSquares = true;
 
     private int sample(BufferedImage image, Rectangle rc) {
-        // FIXME could reuse a buffer for param #5
-        int[] pixels = image.getRGB(rc.x, rc.y, rc.width, rc.height, null, 0, rc.width);
+        int[] pixels = image.getRGB(rc.x, rc.y, rc.width, rc.height, buffer, 0, rc.width);
         float r = 0;
         float g = 0;
         float b = 0;
