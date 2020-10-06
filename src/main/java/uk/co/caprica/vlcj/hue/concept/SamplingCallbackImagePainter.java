@@ -78,9 +78,9 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
     // FIXME using difference of squares is likely overkill here
     private static final boolean useSquares = true;
 
-    private static int sample(BufferedImage image, Rectangle rc) {
+    private int sample(BufferedImage image, Rectangle rc) {
         // FIXME could reuse a buffer for param #5
-        int[] pixels = image.getRGB(rc.x, rc.y, rc.width, rc.height, null, 0, image.getWidth());
+        int[] pixels = image.getRGB(rc.x, rc.y, rc.width, rc.height, null, 0, rc.width);
         float r = 0;
         float g = 0;
         float b = 0;
