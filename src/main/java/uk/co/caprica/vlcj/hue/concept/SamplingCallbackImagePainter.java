@@ -84,9 +84,9 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
     private int sample(BufferedImage image, Rectangle rc) {
         int[] pixels = image.getRGB(rc.x, rc.y, rc.width, rc.height, buffer, 0, rc.width);
 
-        float r = 0;
-        float g = 0;
-        float b = 0;
+        int r = 0;
+        int g = 0;
+        int b = 0;
 
         int cr;
         int cg;
