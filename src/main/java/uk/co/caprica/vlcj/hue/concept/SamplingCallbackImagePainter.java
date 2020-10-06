@@ -122,7 +122,7 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
     }
 
     private static int rgb(int r, int g, int b) {
-        return ((r & 0xFF) << 16) | ((g & 0xFF) << 8)  | ((b & 0xFF));
+        return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF));
     }
 
     protected void sample(int[] samples) {
