@@ -83,23 +83,37 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
 
     private int sample(BufferedImage image, Rectangle rc) {
         int[] pixels = image.getRGB(rc.x, rc.y, rc.width, rc.height, buffer, 0, rc.width);
+
         float r = 0;
         float g = 0;
         float b = 0;
+
+        int cr;
+        int cg;
+        int cb;
+
+        int rgb;
+
         for (int i = 0; i < pixels.length; i++) {
-            // FIXME maybe don't create an object here and inline the maths
-            Color c = new Color(pixels[i]);
+            rgb = pixels[i];
+
+            cr = (rgb >> 16) & 0xFF;
+            cg = (rgb >> 8) & 0xFF;
+            cb = (rgb) & 0xFF;
+
             if (useSquares) {
-                r += c.getRed() * c.getRed();
-                g += c.getGreen() * c.getGreen();
-                b += c.getBlue() * c.getBlue();
+                r += cr * cr;
+                g += cg * cg;
+                b += cb * cb;
             } else {
-                r += c.getRed();
-                g += c.getGreen();
-                b += c.getBlue();
+                r += cr;
+                g += cg;
+                b += cb;
             }
         }
+
         float sz = rc.width * rc.height;
+
         if (useSquares) {
             return rgb((int) floor(sqrt(r / sz)), (int) floor(sqrt(g / sz)), (int) floor(sqrt(b / sz)));
         } else {
