@@ -84,6 +84,7 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
     private int sample(BufferedImage image, Rectangle rc) {
         int[] pixels = image.getRGB(rc.x, rc.y, rc.width, rc.height, buffer, 0, rc.width);
 
+        // These need to be floats
         float r = 0;
         float g = 0;
         float b = 0;
@@ -94,6 +95,7 @@ public class SamplingCallbackImagePainter extends SampleAspectRatioCallbackImage
 
         int rgb;
 
+        // FIXME maybe sampling every single pixel in the region is not necessary
         for (int i = 0; i < pixels.length; i++) {
             rgb = pixels[i];
 
